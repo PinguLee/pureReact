@@ -27,19 +27,18 @@ function component(stateData) {
   const menuItems = stateData.map(item => {
     return createElement('li', { href: item.hash }, item.text);
   });
-
+  const title = createElement('h2', null, '연습');
   const menu = createElement('ul', null, ...menuItems);
-  const content = createElement('div', null, '안녕하세요 React');
-
-  return createElement('div', null, menu, content);
+  return createElement('div', null, title, menu);
 }
 
 const stateData = [
-  { hash: '#home', text: '홈' },
-  { hash: '#about', text: '소개' },
-  { hash: '#services', text: '서비스' },
-  { hash: '#portfolio', text: '포트폴리오' },
-  { hash: '#contact', text: '문의' },
+  { hash: '#ex1', text: 'ex1' },
+  { hash: '#ex2', text: 'ex2' },
+  { hash: '#ex3', text: 'ex3' },
+  { hash: '#ex4', text: 'ex4' },
+  { hash: '#ex5', text: 'ex5' },
+  { hash: '#ex6', text: 'ex6' }
 ];
 
 const virtualDom = component(stateData);
