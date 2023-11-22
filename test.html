@@ -3,57 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="index.js"></script>
   <title>pure React</title>
   
 </head>
 <body>
   <div id="root"></div>
-
-  <script>
-    function createElement(type, props, children) {
-      return document.createElement(type);
-    }
-    
-    function component(stateData) {
-      const menuItems = [];
-      for (let i = 0; i < stateData.length; i++) {
-        const item = stateData[i];
-        const menuItem = createElement('li', { href: item.hash }, item.text);
-        menuItems.push(menuItem);
-      }
-      const menu = createElement('ul', null, menuItems);
-      const content = createElement('div', null, 'Hello React');
-      return createElement('div', null, menu, content);
-    }
-    
-    function render(virtualDom) {
-      if (typeof virtualDom === 'string') {
-        return document.createTextNode(virtualDom);
-      }
-      const element = document.createElement(virtualDom.type);
-      if (virtualDom.props) {
-        for (const [key, value] of Object.entries(virtualDom.props)) {
-          element.setAttribute(key, value);
-        }
-      }
-      for (let i = 0; i < virtualDom.children.length; i++) {
-        const child = virtualDom.children[i];
-        element.appendChild(render(child));
-      }
-      return element;
-    }
-    
-    const stateData = [
-      { hash: '#home', text: 'Home' },
-      { hash: '#about', text: 'About' },
-      { hash: '#services', text: 'Services' },
-      { hash: '#portfolio', text: 'Portfolio' },
-      { hash: '#contact', text: 'Contact' },
-    ];
-    
-    const container = document.getElementById('root');
-    const virtualDom = component(stateData);
-    container.appendChild(render(virtualDom));
-  </script>
 </body>
 </html>
