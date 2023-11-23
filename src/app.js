@@ -23,13 +23,29 @@ function render(virtualDom) {
   return element;
 }
 
-function component(stateData) {
-  const menuItems = stateData.map(item => {
-    return createElement('li', { href: item.hash }, item.text);
+function ExerciseComponent({ hash, text, isVisible, toggleVisibility }) {
+  const style = { display: isVisible ? 'block' : 'none' };
+  return createElement('div', { style, className: 'exercise-component', onClick: toggleVisibility }, text);
+}
+
+function component(stateData, visibleExerciseIndex, setVisibility) {
+  const menuItems = stateData.map((item, index) => {
+    return createElement('li', { key: index }, item.text);
   });
+
+  const exercises = stateData.map((item, index) => {
+    return ExerciseComponent({
+      key: index,
+      hash: item.hash,
+      text: item.text,
+      isVisible: index === visibleExerciseIndex,
+      toggleVisibility: () => setVisibility(index),
+    });
+  });
+
   const title = createElement('h2', null, '연습');
   const menu = createElement('ul', null, ...menuItems);
-  return createElement('div', null, title, menu);
+  return createElement('div', null, title, menu, ...exercises);
 }
 
 const stateData = [
@@ -38,9 +54,7 @@ const stateData = [
   { hash: '#ex3', text: 'ex3' },
   { hash: '#ex4', text: 'ex4' },
   { hash: '#ex5', text: 'ex5' },
-  { hash: '#ex6', text: 'ex6' }
+  { hash: '#ex6', text: 'ex6' },
 ];
 
-const virtualDom = component(stateData);
-
-export { render, virtualDom };
+export { render, component, stateData };
