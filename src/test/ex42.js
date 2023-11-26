@@ -7,5 +7,5 @@ for (let i = 0; i < arr.length; i++) {
 
 // 2번
 arr.forEach(element => {
-    console.log(element);
+    console.log(element)
 });
