@@ -1,0 +1,7 @@
+async&await
+동기 처리 가능
+then()/catch() 메서드를 사용 안함
+
+Promise
+동기 처리 불가능
+then()/catch() 메서드를 사용 함
