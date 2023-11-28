@@ -1,6 +1,6 @@
 import './styles/main.scss';
 
-function createElement(type, props, children) {
+function createElement(type, props, ...children) {
   return {
     type,
     props,
@@ -23,6 +23,8 @@ function component(stateData) {
 }
 
 function render(virtualDom) {
+  console.log(virtualDom);
+  //console.log(typeof(virtualDom));
   if (typeof virtualDom === 'string') {
     return document.createTextNode(virtualDom);
   }
